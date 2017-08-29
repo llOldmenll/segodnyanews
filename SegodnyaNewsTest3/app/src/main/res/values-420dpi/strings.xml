@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Segodnya News</string>
+    <string name="headline_title">cвежие новости</string>
+    <string name="more_articles">больше</string>
+
+
+    <string name="stringPolitics">Политика</string>
+    <string name="stringUkraine">Украина</string>
+    <string name="stringEconomics">Экономика</string>
+    <string name="stringWorld">Мир</string>
+    <string name="stringCulture">Культура</string>
+    <string name="stringLife">Жизнь</string>
+    <string name="stringSport">Спорт</string>
+    <string name="stringRegions">Регионы</string>
+    <string name="stringKiev">Киев</string>
+    <string name="stringHot">Горячие темы</string>
+    <string name="stringCriminal">Криминал</string>
+    <string name="stringOthers">Другое</string>
+    <string name="prev_article">пред.</string>
+    <string name="next_article">след.</string>
+
+    <string-array name="news_categories_array">
+        <item>Последние новости</item>
+        <item>Горячие темы</item>
+        <item>Политика</item>
+        <item>Украина</item>
+        <item>Экономика</item>
+        <item>Мир</item>
+        <item>Киев</item>
+        <item>Культура</item>
+        <item>Спорт</item>
+        <item>Жизнь</item>
+        <item>Регионы</item>
+        <item>Криминал</item>
+    </string-array>
+</resources>
