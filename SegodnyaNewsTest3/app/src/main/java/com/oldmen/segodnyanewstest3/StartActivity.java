@@ -307,6 +307,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
             recyclerView.setLayoutManager(gridLayoutManager);
         }
 
+        rootNav.setMenuLocked(true);
 
         if (isConnected(this)) {
             new TakeNews(currentUrl, currentCategory).execute();
@@ -368,6 +369,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
 
     private void setStartActivityViews(String categoryName) {
 
+        rootNav.setMenuLocked(false);
         mainTitle.setText(categoryName);
 
         if (itemList != null) {
@@ -535,6 +537,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
     @Override
     public void onItemClicked(String category) {
         rootNav.closeMenu();
+        rootNav.setMenuLocked(true);
         progressView.setVisibility(View.VISIBLE);
         nestedScrollView.setVisibility(View.GONE);
         btnMenuArrow.setVisibility(View.GONE);
