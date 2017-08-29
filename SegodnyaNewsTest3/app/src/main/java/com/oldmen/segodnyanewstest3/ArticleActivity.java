@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -294,13 +295,15 @@ public class ArticleActivity extends AppCompatActivity {
     public void createAlertNetworkDialog() {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setMessage("Internet connection not available!");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Retry", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.cancel();
                 if (isConnected(context)) {
                     new ParsingArticle().execute();
                 } else {
+                    Intent settingsIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                    startActivity(settingsIntent);
                     createAlertNetworkDialog();
                 }
             }

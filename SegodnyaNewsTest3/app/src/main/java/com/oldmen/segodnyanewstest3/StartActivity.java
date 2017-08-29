@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
@@ -622,6 +623,8 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
                 if (isConnected(context)) {
                     new TakeNews(currentUrl, currentCategory).execute();
                 } else {
+                    Intent settingsIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                    startActivity(settingsIntent);
                     createAlertNetworkDialog();
                 }
             }
