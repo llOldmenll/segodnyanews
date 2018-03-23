@@ -82,6 +82,7 @@
 
 
             <TextView
+                android:paddingTop="4dp"
                 android:id="@+id/small_title"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
