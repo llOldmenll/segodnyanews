@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -54,6 +55,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     private ItemInfo item;
     private Toolbar articleActivityToolbar;
+    private TextView segodnyaUa;
 
     ImageButton btnArrowBack;
     private ImageButton btnShareArticle;
@@ -62,6 +64,8 @@ public class ArticleActivity extends AppCompatActivity {
 
     private String imageFullSizeUrl;
     private String videoTitleRes = null;
+    private Typeface helvetica_font;
+    private Typeface futura_font;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,8 @@ public class ArticleActivity extends AppCompatActivity {
         articleActivityToolbar = (Toolbar) findViewById(R.id.article_activity_toolbar);
         btnArrowBack = (ImageButton) findViewById(R.id.btn_back_arrow_article);
         btnShareArticle = (ImageButton) findViewById(R.id.btn_share_article);
+        helvetica_font = Typeface.createFromAsset(getAssets(), "fonts/helvetica.ttc");
+        futura_font = Typeface.createFromAsset(getAssets(), "fonts/Futura.ttc");
 
         progressView = (HiveProgressView) findViewById(R.id.progress_view_article);
         articleScrollView = (ScrollView) findViewById(R.id.scrollView_article);
@@ -86,6 +92,10 @@ public class ArticleActivity extends AppCompatActivity {
         articleWebView = (WebView) findViewById(R.id.webView_article);
         sourceContainer = (LinearLayout) findViewById(R.id.source_article_view);
 
+        articleTitle.setTypeface(futura_font, Typeface.BOLD);
+        articleDate.setTypeface(futura_font);
+        articleSubtitle.setTypeface(helvetica_font);
+        articleSource.setTypeface(futura_font);
 
         progressView.setVisibility(View.VISIBLE);
         articleScrollView.setVisibility(View.INVISIBLE);
@@ -172,6 +182,9 @@ public class ArticleActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+
+        segodnyaUa = (TextView) findViewById(R.id.segodnya_ua);
+        segodnyaUa.setTypeface(futura_font, Typeface.BOLD);
     }
 
     private void setArticleData(String subtitle, String html) {
@@ -187,10 +200,10 @@ public class ArticleActivity extends AppCompatActivity {
 
         String pish = "<html><head>" +
                 "<style type=\"text/css\">" +
-                "@font-face {font-family: serif; font-size: medium}" +
+                "@font-face {font-family: helvetica; src: url(\\\"file:///android_asset/font/helvetica.ttc\\\"); font-size: medium}" +
                 "h1 {font-family: serif; font-size: medium}" +
                 "h3 {font-family: serif; font-size: medium}" +
-                "body {font-family: serif;font-size: medium;text-left: justify;}" +
+                "body {font-family: helvetica;font-size: medium;text-left: justify;}" +
                 "img {min-width: 100%; width: 100%; max-width: 100%; min-height: 200px;}" +
                 "table {min-width: 100%; width: 100%; max-width: 100%; min-height: 200px;}" +
                 "iframe {display: block; min-width: 100%; width: 100%; max-width: 100%; min-height: " + minHeight + "px; " +

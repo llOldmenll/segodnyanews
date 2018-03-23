@@ -1,6 +1,7 @@
 package com.oldmen.segodnyanewstest3;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,11 +16,14 @@ public class StartRecyclerAdapter extends RecyclerView.Adapter<StartRecyclerHold
     private ArrayList<ItemInfo> itemArray = new ArrayList<>();
     private Context context;
     private OnCardClickListener cardClick;
+    private Typeface custom_font;
 
     public StartRecyclerAdapter(ArrayList<ItemInfo> itemArray, Context context, OnCardClickListener cardClick) {
         this.itemArray = itemArray;
         this.context = context;
         this.cardClick = cardClick;
+
+        custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Futura.ttc");
     }
 
     @Override
@@ -35,6 +39,10 @@ public class StartRecyclerAdapter extends RecyclerView.Adapter<StartRecyclerHold
         holder.bindStartNews(itemArray.get(position + 3), context);
         holder.smallTitle.setMaxLines(context.getResources().getInteger(R.integer.lines_number));
 
+        holder.smallTitle.setTypeface(custom_font, Typeface.BOLD);
+        holder.smallCategory.setTypeface(custom_font);
+        holder.smallDate.setTypeface(custom_font);
+
         final CardView clickedCardView = holder.smallCardView;
 
         clickedCardView.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +57,4 @@ public class StartRecyclerAdapter extends RecyclerView.Adapter<StartRecyclerHold
     public int getItemCount() {
         return itemArray.size() - 3;
     }
-
-
 }

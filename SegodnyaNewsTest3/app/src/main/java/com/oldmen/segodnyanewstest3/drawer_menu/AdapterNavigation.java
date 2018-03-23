@@ -2,6 +2,7 @@ package com.oldmen.segodnyanewstest3.drawer_menu;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class AdapterNavigation extends RecyclerView.Adapter<HolderNavigation> {
     private boolean isItFirstAppStart;
     private Realm realm = Realm.getDefaultInstance();
     private RealmResults<CategoryIcon> categoryIcons = realm.where(CategoryIcon.class).findAllAsync();
+    private Typeface custom_font;
 
 
     public int getLastClickedPosition() {
@@ -69,8 +71,9 @@ public class AdapterNavigation extends RecyclerView.Adapter<HolderNavigation> {
     public void onBindViewHolder(HolderNavigation holder, final int position) {
         final CategoryIcon currentIcon = categoryIcons.get(position);
         final String categoryName = categoryNameArray.get(position);
-
+        custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Futura.ttc");
         final TextView txtC = holder.txtCategory;
+        holder.txtCategory.setTypeface(custom_font, Typeface.BOLD);
         final ImageView imgC = holder.categoryIcon;
 
         if (!isItFirstAppStart) {

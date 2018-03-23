@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso;
 
 public class StartRecyclerHolder extends RecyclerView.ViewHolder {
 
-    private TextView smallCategory;
+    TextView smallCategory;
     TextView smallTitle;
-    private TextView smallDate;
+    TextView smallDate;
     private ImageView smallImageView;
     CardView smallCardView;
 
@@ -32,7 +32,7 @@ public class StartRecyclerHolder extends RecyclerView.ViewHolder {
 
         smallCategory.setText(StartActivity.category(itemInfo.getCategory()));
         smallTitle.setText(itemInfo.getTitle());
-        Picasso.with(context)
+        Picasso.get()
                 .load(itemInfo.getImageUrl())
                 .into(smallImageView);
         smallDate.setText(itemInfo.getDate());

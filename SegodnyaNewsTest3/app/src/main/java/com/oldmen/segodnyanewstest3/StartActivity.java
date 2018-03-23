@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -106,6 +107,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
     private TextView middleRightDate;
     private ImageView middleRightImage;
 
+
     Button moreNewsButton;
     ConstraintLayout constrButton;
 
@@ -137,6 +139,8 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
     public static final String CURRENT_PAGE = "Current page";
     public static final String BTN_MENU_ARROW_STATE = "Btn menu arrow state";
 
+    private Typeface custom_font;
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
@@ -157,6 +161,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_start);
         overridePendingTransition(0, 0);
+        custom_font = Typeface.createFromAsset(getAssets(), "fonts/Futura.ttc");
 
         if (savedInstanceState != null) {
             currentCategoryStateList = savedInstanceState.getParcelableArrayList(CATEGORIES_STATE);
@@ -222,7 +227,6 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
         middleRightTitle = (TextView) findViewById(R.id.middle_title_right);
         middleRightDate = (TextView) findViewById(R.id.middle_right_date);
         middleRightImage = (ImageView) findViewById(R.id.middle_image_right);
-
 
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -355,6 +359,20 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
             }
         });
 
+        bigTitle.setTypeface(custom_font, Typeface.BOLD);
+        mainTitle.setTypeface(custom_font, Typeface.BOLD);
+        middleLeftTitle.setTypeface(custom_font, Typeface.BOLD);
+        middleRightTitle.setTypeface(custom_font, Typeface.BOLD);
+
+        bigDate.setTypeface(custom_font);
+        middleLeftDate.setTypeface(custom_font);
+        middleRightDate.setTypeface(custom_font);
+
+        bigCategoryType.setTypeface(custom_font);
+        middleLeftDate.setTypeface(custom_font);
+        middleRightDate.setTypeface(custom_font);
+
+        segodnyaUa.setTypeface(custom_font, Typeface.BOLD);
     }
 
     private boolean isConnected(Context context) {
@@ -454,7 +472,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
                 bigCategoryType.setText(category(this.itemZero.getCategory()));
                 bigTitle.setText(this.itemZero.getTitle());
                 bigDate.setText(this.itemZero.getDate());
-                Picasso.with(StartActivity.this)
+                Picasso.get()
                         .load(this.itemZero.getImageUrl())
                         .into(bigImage);
                 break;
@@ -462,7 +480,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
                 middleLeftCategoryType.setText(category(this.itemOne.getCategory()));
                 middleLeftTitle.setText(this.itemOne.getTitle());
                 middleLeftDate.setText(this.itemOne.getDate());
-                Picasso.with(StartActivity.this)
+                Picasso.get()
                         .load(this.itemOne.getImageUrl())
                         .into(middleLeftImage);
                 break;
@@ -470,7 +488,7 @@ public class StartActivity extends AppCompatActivity implements OnCardClickListe
                 middleRightCategoryType.setText(category(this.itemTwo.getCategory()));
                 middleRightTitle.setText(this.itemTwo.getTitle());
                 middleRightDate.setText(this.itemTwo.getDate());
-                Picasso.with(StartActivity.this)
+                Picasso.get()
                         .load(this.itemTwo.getImageUrl())
                         .into(middleRightImage);
                 break;
